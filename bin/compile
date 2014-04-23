@@ -43,7 +43,7 @@ curl --silent --max-time 60 --location "$OPT_BUILDPACK_URL" | tar xz
 
 echo "-----> from $OPT_TAR_URL"
 curl --silent --max-time 60 --location "$OPT_TAR_URL" | tar xz
-mv ./g-wisedata $LP_DIR/html/
+mv ./g-wisedata $CACHE_DIR/www/html/
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf

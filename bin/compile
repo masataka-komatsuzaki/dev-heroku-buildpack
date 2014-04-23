@@ -26,7 +26,11 @@ shopt -s dotglob
 
 echo "Build dir is $BUILD_DIR"
 cd $BUILD_DIR
-echo ls *
+
+echo "-----> from $OPT_TAR_URL"
+curl --silent --max-time 60 --location "$OPT_TAR_URL" | tar xz
+mv ./g-wisedata ./html
+
 # move app things to www
 mkdir -p $CACHE_DIR/www
 mv * $CACHE_DIR/www
@@ -40,10 +44,6 @@ fi
 echo "-----> Extracting Apache $APACHE_VERSION PHP $PHP_VERSION build $BUILDPACK_VERSION"
 echo "-----> from $OPT_BUILDPACK_URL"
 curl --silent --max-time 60 --location "$OPT_BUILDPACK_URL" | tar xz
-
-echo "-----> from $OPT_TAR_URL"
-curl --silent --max-time 60 --location "$OPT_TAR_URL" | tar xz
-mv ./g-wisedata /app/www/html/
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
